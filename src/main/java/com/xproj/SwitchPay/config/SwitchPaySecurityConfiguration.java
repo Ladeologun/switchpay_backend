@@ -22,7 +22,7 @@ public class SwitchPaySecurityConfiguration {
     @Bean
     public SecurityFilterChain handlePlatformSecurity(HttpSecurity http) throws Exception{
         http.
-                requiresChannel(rcc->rcc.anyRequest().requiresInsecure()).
+                requiresChannel(rcc->rcc.anyRequest().requiresSecure()).
                 csrf((csrf) -> csrf.disable()).
                 authorizeHttpRequests((requests) -> {
                     requests.requestMatchers("/api/v1/auth/**","/ws/**","/error").permitAll()
