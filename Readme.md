@@ -4,6 +4,9 @@ This is the backend for the SwitchPay platform. It is a RESTful API written in J
 ## Note on Initial Request
 
 The application has been deployed on a free tier render server which may result in a period of inactivity after the initial request. This is due to the render server taking time to spin up and handle the request. Please be patient and allow for a few minutes of inactivity before making any further requests.
+## Base URL on Render
+
+The base URL for the API is <span style="background-color: yellow">https://switchpay-backend.onrender.com/api/v1/</span>. Please copy and paste this URL when making requests to the API.
 
 ## Prerequisites
 
@@ -25,12 +28,12 @@ docker run -p 4040:4040 switchpay
 
 # The following environmental variables can also be set:
 
-# DATABASE_URL
-# DATABASE_USERNAME
-# DATABASE_PASSWORD
-# SECRET_KEY
+export DATABASE_URL= <Your value> \
+       DATABASE_USERNAME=<Your value> \
+       DATABASE_PASSWORD=<Your value> \
+       SECRET_KEY=<Your value>
 
-3. The application will be available at http://localhost:4040/api/v1
+3. The application will be available at http://localhost:4040/api/v1/
 
 ## Running the Application Locally
 
@@ -58,7 +61,8 @@ This will build the project and create a JAR file in the target directory.
 
 ## Database Configurations
 
-The project uses a postgresdatabase to store data. To configure the database, you will need to provide the following configuration:
+The project uses a postgres database to store data. To configure the database, you will need to provide the following configuration:
+
 ```bash
 # The database configuration can be set in the application.properties file.
 
@@ -79,6 +83,7 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/switchpay
 spring.datasource.username=postgres
 spring.datasource.password=postgres
 spring.datasource.driver-class-name=org.postgresql.Driver
+```
 
 
 ## Running the Project
@@ -95,26 +100,12 @@ The following endpoints are available:
 
 ### Authentication
 
-* POST /login - Login to the system and get a JWT token
-* POST /register - Register a new user
+* POST auth/login - Login to the system and get a JWT token
+* POST auth/register - Register a new user
 
 ### Accounts
 
-* GET /account/my-accounts - Get a list of all accounts of the authencated user
-## Usage
-
-To use the API, you will need to send a JWT token in the Authorization header of your requests. The token can be obtained by logging in to the system using the /login endpoint.
-
-curl -X GET \
-  http://localhost:4040/api/v1/account/my-accounts \
-  -H 'Authorization: Bearer <JWT_TOKEN>'
-Example using curl:
-
-```bash
-curl -X GET \
-  http://localhost:4040/api/v1/account/my-accounts \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-```
+* GET account/my-accounts - Get a list of all accounts of the authencated user
 
 ## Contributing
 
