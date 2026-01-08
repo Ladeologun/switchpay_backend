@@ -25,7 +25,7 @@ public class SwitchPaySecurityConfiguration {
                 requiresChannel(rcc->rcc.anyRequest().requiresSecure()).
                 csrf((csrf) -> csrf.disable()).
                 authorizeHttpRequests((requests) -> {
-                    requests.requestMatchers("/api/v1/auth/**","/ws/**","/error").permitAll()
+                    requests.requestMatchers("/api/v1/auth/**","/api/v1/transactions/**","/ws/**","/error").permitAll()
                             .anyRequest().authenticated();
                 });
         http.formLogin(fml-> fml.disable());
